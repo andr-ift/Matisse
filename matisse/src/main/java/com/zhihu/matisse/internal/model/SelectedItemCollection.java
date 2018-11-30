@@ -89,9 +89,9 @@ public class SelectedItemCollection {
     }
 
     public boolean add(Item item) {
-        if (typeConflict(item)) {
-            throw new IllegalArgumentException("Can't select images and videos at the same time.");
-        }
+//        if (typeConflict(item)) {
+//            throw new IllegalArgumentException("Can't select images and videos at the same time.");
+//        }
         boolean added = mItems.add(item);
         if (added) {
             if (mCollectionType == COLLECTION_UNDEFINED) {
@@ -191,7 +191,7 @@ public class SelectedItemCollection {
 
             return new IncapableCause(cause);
         } else if (typeConflict(item)) {
-            return new IncapableCause(mContext.getString(R.string.error_type_conflict));
+//            return new IncapableCause(mContext.getString(R.string.error_type_conflict));
         }
 
         return PhotoMetadataUtils.isAcceptable(mContext, item);

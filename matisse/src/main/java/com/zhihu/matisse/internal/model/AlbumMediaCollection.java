@@ -26,7 +26,10 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 
 import com.zhihu.matisse.internal.entity.Album;
+import com.zhihu.matisse.internal.entity.Item;
 import com.zhihu.matisse.internal.loader.AlbumMediaLoader;
+import com.zhihu.matisse.internal.ui.BasePreviewFragment;
+import com.zhihu.matisse.ui.MatisseActivity;
 
 import java.lang.ref.WeakReference;
 
@@ -62,6 +65,10 @@ public class AlbumMediaCollection implements LoaderManager.LoaderCallbacks<Curso
         }
 
         mCallbacks.onAlbumMediaLoad(data);
+
+        data.moveToPosition(0);
+        ((MatisseActivity) context).mSelectedCollection.add(Item.valueOf(data));
+        ((BasePreviewFragment)((MatisseActivity) context).getSupportFragmentManager().findFragmentByTag("preview")).update();
     }
 
     @Override

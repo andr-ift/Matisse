@@ -18,8 +18,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/root"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -33,15 +32,27 @@
         <TextView
             android:id="@+id/selected_album"
             android:layout_width="wrap_content"
-            android:layout_height="?actionBarSize"
+            android:layout_height="wrap_content"
             android:drawableRight="@drawable/ic_arrow_drop_down_white_24dp"
             android:foreground="?selectableItemBackground"
             android:gravity="center"
             android:textColor="?attr/album.element.color"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/button_apply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:foreground="?selectableItemBackground"
+            android:padding="16dp"
+            android:textColor="?attr/bottomToolbar.apply.textColor"
+            android:textSize="16sp" />
+
     </android.support.v7.widget.Toolbar>
 
     <FrameLayout
+        android:visibility="gone"
         android:id="@+id/bottom_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,6 +62,7 @@
         tools:targetApi="lollipop">
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/button_preview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -93,16 +105,6 @@
 
         </LinearLayout>
 
-
-        <TextView
-            android:id="@+id/button_apply"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:foreground="?selectableItemBackground"
-            android:padding="16dp"
-            android:textColor="?attr/bottomToolbar.apply.textColor"
-            android:textSize="16sp" />
     </FrameLayout>
 
     <FrameLayout

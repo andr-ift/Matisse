@@ -76,8 +76,8 @@ public class MatisseActivity extends AppCompatActivity implements
     public static final String CHECK_STATE = "checkState";
     private final AlbumCollection mAlbumCollection = new AlbumCollection();
     private MediaStoreCompat mMediaStoreCompat;
-    private SelectedItemCollection mSelectedCollection = new SelectedItemCollection(this);
-    private SelectionSpec mSpec;
+    public SelectedItemCollection mSelectedCollection = new SelectedItemCollection(this);
+    public SelectionSpec mSpec;
 
     private AlbumsSpinner mAlbumsSpinner;
     private AlbumsAdapter mAlbumsAdapter;
@@ -180,6 +180,7 @@ public class MatisseActivity extends AppCompatActivity implements
     @Override
     public void onBackPressed() {
         setResult(Activity.RESULT_CANCELED);
+        finish();
         super.onBackPressed();
     }
 
@@ -238,7 +239,7 @@ public class MatisseActivity extends AppCompatActivity implements
         }
     }
 
-    private void updateBottomToolbar() {
+    public void updateBottomToolbar() {
 
         int selectedCount = mSelectedCollection.count();
         if (selectedCount == 0) {
@@ -282,7 +283,6 @@ public class MatisseActivity extends AppCompatActivity implements
             }
         }
     }
-
 
     private int countOverMaxSize() {
         int count = 0;
@@ -378,6 +378,7 @@ public class MatisseActivity extends AppCompatActivity implements
     }
 
     private void onAlbumSelected(Album album) {
+
         if (album.isAll() && album.isEmpty()) {
             mContainer.setVisibility(View.GONE);
             mEmptyView.setVisibility(View.VISIBLE);
@@ -390,6 +391,7 @@ public class MatisseActivity extends AppCompatActivity implements
                     .replace(R.id.container, fragment, MediaSelectionFragment.class.getSimpleName())
                     .commitAllowingStateLoss();
         }
+        mSelectedCollection.overwrite(new ArrayList<Item>(), SelectedItemCollection.COLLECTION_MIXED);
     }
 
     @Override

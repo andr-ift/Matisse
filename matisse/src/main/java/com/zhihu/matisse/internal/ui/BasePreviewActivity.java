@@ -74,6 +74,7 @@ public abstract class BasePreviewActivity extends AppCompatActivity implements V
             finish();
             return;
         }
+
         setContentView(R.layout.activity_media_preview);
         if (Platform.hasKitKat()) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);

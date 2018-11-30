@@ -22,6 +22,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,8 @@ import com.zhihu.matisse.internal.entity.IncapableCause;
 import com.zhihu.matisse.internal.model.SelectedItemCollection;
 import com.zhihu.matisse.internal.ui.widget.CheckView;
 import com.zhihu.matisse.internal.ui.widget.MediaGrid;
+
+import java.util.Arrays;
 
 public class AlbumMediaAdapter extends
         RecyclerViewCursorAdapter<RecyclerView.ViewHolder> implements
@@ -159,9 +162,10 @@ public class AlbumMediaAdapter extends
 
     @Override
     public void onThumbnailClicked(ImageView thumbnail, Item item, RecyclerView.ViewHolder holder) {
-        if (mOnMediaClickListener != null) {
-            mOnMediaClickListener.onMediaClick(null, item, holder.getAdapterPosition());
-        }
+//        if (mOnMediaClickListener != null) {
+//            mOnMediaClickListener.onMediaClick(null, item, holder.getAdapterPosition());
+//        }
+        onCheckViewClicked(null, item, holder);
     }
 
     @Override
@@ -207,7 +211,6 @@ public class AlbumMediaAdapter extends
         IncapableCause.handleCause(context, cause);
         return cause == null;
     }
-
 
     public void registerCheckStateListener(CheckStateListener listener) {
         mCheckStateListener = listener;

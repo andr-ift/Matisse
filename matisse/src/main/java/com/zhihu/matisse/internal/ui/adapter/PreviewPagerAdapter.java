@@ -18,6 +18,7 @@ package com.zhihu.matisse.internal.ui.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.ViewGroup;
 
 import com.zhihu.matisse.internal.entity.Item;
@@ -26,7 +27,7 @@ import com.zhihu.matisse.internal.ui.PreviewItemFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PreviewPagerAdapter extends FragmentPagerAdapter {
+public class PreviewPagerAdapter extends FragmentStatePagerAdapter {
 
     private ArrayList<Item> mItems = new ArrayList<>();
     private OnPrimaryItemSetListener mListener;
@@ -60,6 +61,12 @@ public class PreviewPagerAdapter extends FragmentPagerAdapter {
 
     public void addAll(List<Item> items) {
         mItems.addAll(items);
+    }
+
+    public void update(List<Item> items) {
+        mItems.clear();
+        mItems.addAll(items);
+        notifyDataSetChanged();
     }
 
     interface OnPrimaryItemSetListener {
