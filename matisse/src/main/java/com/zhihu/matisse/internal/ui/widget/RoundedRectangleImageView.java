@@ -19,7 +19,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.RectF;
-import android.support.v7.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatImageView;
 import android.util.AttributeSet;
 
 public class RoundedRectangleImageView extends AppCompatImageView {
@@ -53,7 +53,7 @@ public class RoundedRectangleImageView extends AppCompatImageView {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        mRectF.set(0.0f, 0.0f, getWidth(), getHeight());
+        mRectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
         mRoundedRectPath.addRoundRect(mRectF, mRadius, mRadius, Path.Direction.CW);
     }
 

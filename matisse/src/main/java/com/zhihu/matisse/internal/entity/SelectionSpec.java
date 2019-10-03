@@ -17,7 +17,8 @@
 package com.zhihu.matisse.internal.entity;
 
 import android.content.pm.ActivityInfo;
-import android.support.annotation.StyleRes;
+
+import androidx.annotation.StyleRes;
 
 import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.R;
@@ -52,6 +53,7 @@ public final class SelectionSpec {
     public boolean hasInited;
     public OnSelectedListener onSelectedListener;
     public boolean originalable;
+    public boolean autoHideToobar;
     public int originalMaxSize;
     public OnCheckedListener onCheckedListener;
 
@@ -87,6 +89,7 @@ public final class SelectionSpec {
         imageEngine = new GlideEngine();
         hasInited = true;
         originalable = false;
+        autoHideToobar = false;
         originalMaxSize = Integer.MAX_VALUE;
     }
 
@@ -104,6 +107,10 @@ public final class SelectionSpec {
 
     public boolean onlyShowVideos() {
         return showSingleMediaType && MimeType.ofVideo().containsAll(mimeTypeSet);
+    }
+
+    public boolean onlyShowGif() {
+        return showSingleMediaType && MimeType.ofGif().equals(mimeTypeSet);
     }
 
     private static final class InstanceHolder {
