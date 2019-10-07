@@ -66,7 +66,7 @@ public class AlbumMediaCollection implements LoaderManager.LoaderCallbacks<Curso
 
         mCallbacks.onAlbumMediaLoad(data);
 
-        data.moveToPosition(0);
+        data.moveToPosition(1);
         ((MatisseActivity) context).mSelectedCollection.add(Item.valueOf(data));
         ((BasePreviewFragment)((MatisseActivity) context).getSupportFragmentManager().findFragmentByTag("preview")).update();
     }
