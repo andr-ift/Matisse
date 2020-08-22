@@ -17,6 +17,7 @@ package com.zhihu.matisse.sample;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
@@ -28,6 +29,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -77,6 +82,18 @@ public class SampleActivity extends AppCompatActivity implements View.OnClickLis
     }
     // </editor-fold>
 
+    ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() != Activity.RESULT_CANCELED) {
+                    if (result.getData() != null) {
+                        List<String> selectedPhotos = Matisse.obtainPathResult(result.getData());
+                        for (String photoPath: selectedPhotos) {
+                            Log.d("JS_d", "selected photo: " + photoPath);
+                        }
+                    }
+                }
+            });
+
     private void startAction(View v) {
         switch (v.getId()) {
             case R.id.zhihu:
@@ -103,7 +120,7 @@ public class SampleActivity extends AppCompatActivity implements View.OnClickLis
                             // DO SOMETHING IMMEDIATELY HERE
                             Log.e("isChecked", "onCheck: isChecked=" + isChecked);
                         })
-                        .forResult(REQUEST_CODE_CHOOSE);
+                        .forResult(mStartForResult);
                 break;
             case R.id.dracula:
                 Matisse.from(SampleActivity.this)

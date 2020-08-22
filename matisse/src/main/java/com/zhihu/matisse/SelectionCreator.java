@@ -19,6 +19,8 @@ package com.zhihu.matisse;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
+
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -364,4 +366,19 @@ public final class SelectionCreator {
         }
     }
 
+    /**
+     * Start to select media and wait for result.
+     *
+     * @param resultLauncher The requestLauncher of Activity or Fragment.
+     */
+    public void forResult(ActivityResultLauncher<Intent> resultLauncher) {
+        Activity activity = mMatisse.getActivity();
+        if (activity == null) {
+            return;
+        }
+
+        Intent intent = new Intent(activity, MatisseActivity.class);
+        Fragment fragment = mMatisse.getFragment();
+        resultLauncher.launch(intent);
+    }
 }
